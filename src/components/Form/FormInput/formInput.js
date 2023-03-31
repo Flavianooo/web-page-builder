@@ -14,7 +14,7 @@ export default function FormInput({
         className="w-full h-10 px-3 py-2 text-base text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
         placeholder={placeholder}
         type={type}
-        defaultValue={value}
+        value={value}
         onChange={(e) => onChange(e.target.value)}
       />
     </label>

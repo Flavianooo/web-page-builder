@@ -15,6 +15,17 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
     }
   };
 
+  const setHeaderBackgroundColor = (val) => {
+    setHeaderData({
+      ...headerData,
+      headerBackground: val,
+    });
+    localStorage.setItem(
+      "headerSettings",
+      JSON.stringify({ ...headerData, headerBackground: val })
+    );
+  };
+
   return (
     <div className={style.container}>
       <h5>
@@ -43,9 +54,13 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
           <FormInput
             label={"Header Background Color"}
             type={"text"}
-            value={headerData.headerBackgroundColor}
+            value={headerData.headerBackground}
+            onChange={setHeaderBackgroundColor}
           ></FormInput>
-          <HexColorPicker></HexColorPicker>
+          <HexColorPicker
+            value={headerData.headerBackground}
+            onChange={setHeaderBackgroundColor}
+          ></HexColorPicker>
         </Form>
       </Modal>
     </div>

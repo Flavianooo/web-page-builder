@@ -12,7 +12,7 @@ export default function Home() {
   );
   const [headerSettings, setHeaderSettings] = useState({
     headerType: "header1",
-    headerBackground: "white",
+    headerBackground: "#ffffff",
     headerTextColor: "black",
     headerLogo: "logo",
     headerLogoColor: "black",
@@ -23,11 +23,15 @@ export default function Home() {
   useEffect(() => {
     const siteTitle = localStorage.getItem("siteTitle");
     const siteDescription = localStorage.getItem("siteDescription");
+    const headerSettings = localStorage.getItem("headerSettings");
     if (siteTitle) {
       setSiteTitle(siteTitle);
     }
     if (siteDescription) {
       setSiteDescription(siteDescription);
+    }
+    if (headerSettings) {
+      setHeaderSettings(JSON.parse(headerSettings));
     }
   }, []);
 
