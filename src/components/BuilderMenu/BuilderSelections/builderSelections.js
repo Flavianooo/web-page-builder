@@ -4,8 +4,14 @@ import header from "/public/svgs/builder-menu/header.svg";
 import footer from "/public/svgs/builder-menu/footer.svg";
 import pageBuilder from "/public/svgs/builder-menu/page-builder.svg";
 import { useState } from "react";
+import hideAllPopups from "@/utils/hidePopups";
 
 export default function BuilderSelections({ setHeaderBuilderEnabled }) {
+  function onClickHeaderBuilder() {
+    setHeaderBuilderEnabled(true);
+    hideAllPopups();
+  }
+
   return (
     <div className={style.container}>
       <div className={style.selection}>
@@ -14,7 +20,7 @@ export default function BuilderSelections({ setHeaderBuilderEnabled }) {
           id="header-builder"
           src={header}
           alt="Header"
-          onClick={setHeaderBuilderEnabled}
+          onClick={onClickHeaderBuilder}
         />
         <h6>Header</h6>
       </div>

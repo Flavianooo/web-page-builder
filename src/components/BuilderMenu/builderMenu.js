@@ -1,3 +1,4 @@
+import hideAllPopups from "@/utils/hidePopups";
 import style from "./builderMenu.module.scss";
 import BuilderSelections from "./BuilderSelections/builderSelections";
 import HeaderBuilder from "./HeaderBuilder/headerBuilder";
