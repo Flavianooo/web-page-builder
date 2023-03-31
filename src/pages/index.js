@@ -2,8 +2,7 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import Layout from "@/components/Layout/layout";
 import BuilderMenu from "@/components/BuilderMenu/builderMenu";
-import { useState } from "react";
-import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [siteTitle, setSiteTitle] = useState("Web Page Builder Demo");
@@ -11,8 +10,16 @@ export default function Home() {
     "Web Page Builder Demo by Efe Tacirlioglu."
   );
 
-  const { data: session } = useSession();
-  if (session) console.log(session);
+  useEffect(() => {
+    const siteTitle = localStorage.getItem("siteTitle");
+    const siteDescription = localStorage.getItem("siteDescription");
+    if (siteTitle) {
+      setSiteTitle(siteTitle);
+    }
+    if (siteDescription) {
+      setSiteDescription(siteDescription);
+    }
+  }, []);
 
   const onSiteTitleChange = (val) => {
     setSiteTitle(val);
