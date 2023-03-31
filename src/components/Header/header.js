@@ -5,13 +5,16 @@ import header from "/public/svgs/builder-menu/header.svg";
 
 export default function Header({ settings, setHeaderSettings }) {
   return (
-    <div
-      style={{
-        backgroundColor: settings.headerBackground,
-        width: settings.headerWidth,
-      }}
-    >
-      safsa
-    </div>
+    <header className={style.header}>
+      <div
+        style={{
+          backgroundColor: settings.headerBackground,
+          width: settings.headerWidth,
+          height: settings.headerHeight,
+        }}
+      >
+        Header
+      </div>
+    </header>
   );
 }

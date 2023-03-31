@@ -13,5 +13,11 @@
             height: 40px;
         }
     }
-    
+    @media screen and (max-width: 768px) {
+        .h6 {
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 0.5rem; 
+        }  
+    } 
 }

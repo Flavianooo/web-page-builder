@@ -1,7 +1,21 @@
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    gap: 0.9rem;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0.9rem;
+  align-items: center;
+  h5 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+    @media screen and (max-width: 768px) {
+      font-size: 0.8rem;
+    }
+  }
+  button {
+    min-width: fit-content;
+  }
+  @media screen and (max-width: 768px) {
+    margin-right: 60px;
+  }
 }

@@ -6,9 +6,15 @@ export default function Modal({ modalId, children }) {
     <div
       id={modalId}
       aria-hidden="true"
-      className="modal bg-white border border-gray-300 rounded-lg shadow-lg p-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 hidden"
+      className="modal rounded-lg max-w-sm lg:max-w-screen-sm
+      fixed lg:bottom-10 lg:left-10 lg:top-auto  top-60 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto
+      "
     >
-      {children}
+      <div className="relative w-full  max-w-2xl md:h-auto">
+        <div className="p-4 relative bg-white rounded-lg shadow">
+          {children}
+        </div>
+      </div>
     </div>
   );
 }

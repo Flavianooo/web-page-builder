@@ -25,7 +25,7 @@ export default function BuilderMenu({
           // return button
           <div className="">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-3 rounded"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold xl:text-base text-xs py-2 px-3 rounded"
               onClick={() => setHeaderBuilderEnabled(false)}
             >
               ← Return

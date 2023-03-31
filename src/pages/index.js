@@ -18,6 +18,8 @@ export default function Home() {
     headerLogoColor: "black",
     headerLayout: 1 / 2,
     headerMenu: [],
+    headerHeight: "100px",
+    headerWidth: "100%",
   });
 
   useEffect(() => {
@@ -66,7 +68,7 @@ export default function Home() {
         headerData={headerSettings}
         setHeaderData={setHeaderSettings}
       />
-      <Header settings={headerSettings}></Header>
+      <Header className={style.header} settings={headerSettings}></Header>
     </Layout>
   );
 }
