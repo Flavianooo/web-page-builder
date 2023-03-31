@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import style from "./modal.module.scss";
 
 export default function Modal({ modalId, children }) {
@@ -5,7 +6,7 @@ export default function Modal({ modalId, children }) {
     <div
       id={modalId}
       aria-hidden="true"
-      className="modal fixed mt-40 top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full"
+      className="modal bg-white border border-gray-300 rounded-lg shadow-lg p-4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 hidden"
     >
       {children}
     </div>

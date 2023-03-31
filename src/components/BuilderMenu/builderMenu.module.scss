@@ -1,11 +1,17 @@
 .container {
-    padding: 1rem 0;
     display: flex; 
     flex-direction: row;
     justify-content: space-between;  
     align-items: center;
     font-family: 'Roboto', sans-serif;
-    
+    padding: 1rem 1.0875rem 1.45rem;
+    .leftCorner {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 0.6rem;
+        align-items: center;
+    }
     .rightCorner {
         display: flex;
         align-items: center;

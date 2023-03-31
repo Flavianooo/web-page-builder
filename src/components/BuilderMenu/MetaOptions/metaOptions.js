@@ -5,6 +5,8 @@ import style from "./metaOptions.module.scss";
 import FormInput from "@/components/Form/FormInput/formInput";
 import Form from "@/components/Form/form";
 import Modal from "@/components/Modal/modal";
+import hideAllPopups from "@/utils/hidePopups";
+import ModalDisableButton from "@/components/Modal/ModalDisableButton/modalDisableButton";
 
 export default function MetaOptions({
   siteTitle,
@@ -18,16 +20,12 @@ export default function MetaOptions({
   };
 
   const openPopup = (evt) => {
+    hideAllPopups();
     if (evt.target.id == "seo")
       document.getElementById("seo-modal")?.classList.toggle("hidden");
     else if (evt.target.id == "social-links") {
       document.getElementById("social-links-modal")?.classList.toggle("hidden");
     }
-  };
-
-  const disablePopup = (evt) => {
-    evt.preventDefault();
-    evt.target.closest(".modal")?.classList.toggle("hidden");
   };
 
   return (
@@ -50,11 +48,7 @@ export default function MetaOptions({
       />
       <Modal modalId={"seo-modal"}>
         <Form submitChanges={submitChanges} title={"Meta Settings for SEO"}>
-          <button onClick={disablePopup} className="absolute right-1 top-1">
-            <svg className="w-6 h-6" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M14.348 14.849a1.2 1.2 0 01-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 01-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 111.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 011.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 010 1.698z" />
-            </svg>
-          </button>
+          <ModalDisableButton />
           <FormInput
             label={"Site Title"}
             type="text"

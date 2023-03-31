@@ -1,14 +1,24 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
+import style from "@/styles/Home.module.css";
 import Layout from "@/components/Layout/layout";
 import BuilderMenu from "@/components/BuilderMenu/builderMenu";
 import { useEffect, useState } from "react";
+import Header from "@/components/Header/header";
 
 export default function Home() {
   const [siteTitle, setSiteTitle] = useState("Web Page Builder Demo");
   const [siteDescription, setSiteDescription] = useState(
     "Web Page Builder Demo by Efe Tacirlioglu."
   );
+  const [headerSettings, setHeaderSettings] = useState({
+    headerType: "header1",
+    headerBackground: "white",
+    headerTextColor: "black",
+    headerLogo: "logo",
+    headerLogoColor: "black",
+    headerLayout: 1 / 2,
+    headerMenu: [],
+  });
 
   useEffect(() => {
     const siteTitle = localStorage.getItem("siteTitle");
@@ -31,6 +41,8 @@ export default function Home() {
     localStorage.setItem("siteDescription", val);
   };
 
+  const [headerBuilderEnabled, setHeaderBuilderEnabled] = useState(false);
+
   return (
     <Layout>
       <Head>
@@ -44,8 +56,13 @@ export default function Home() {
         onSiteTitleChange={onSiteTitleChange}
         siteDescription={siteDescription}
         onSiteDescriptionChange={onSiteDescriptionChange}
-        className={styles.builderMenu}
+        className={style.builderMenu}
+        headerBuilderEnabled={headerBuilderEnabled}
+        setHeaderBuilderEnabled={setHeaderBuilderEnabled}
+        headerData={headerSettings}
+        setHeaderData={setHeaderSettings}
       />
+      <Header settings={headerSettings}></Header>
     </Layout>
   );
 }

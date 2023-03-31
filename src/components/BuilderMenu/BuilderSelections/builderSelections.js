@@ -3,8 +3,9 @@ import style from "./builderSelections.module.scss";
 import header from "/public/svgs/builder-menu/header.svg";
 import footer from "/public/svgs/builder-menu/footer.svg";
 import pageBuilder from "/public/svgs/builder-menu/page-builder.svg";
+import { useState } from "react";
 
-export default function BuilderSelections() {
+export default function BuilderSelections({ setHeaderBuilderEnabled }) {
   return (
     <div className={style.container}>
       <div className={style.selection}>
@@ -13,8 +14,9 @@ export default function BuilderSelections() {
           id="header-builder"
           src={header}
           alt="Header"
+          onClick={setHeaderBuilderEnabled}
         />
-        <h5>Header</h5>
+        <h6>Header</h6>
       </div>
       <div className={style.selection}>
         <Image
@@ -23,7 +25,7 @@ export default function BuilderSelections() {
           src={footer}
           alt="Footer"
         />
-        <h5>Footer</h5>
+        <h6>Footer</h6>
       </div>
       <div className={style.selection}>
         <Image
@@ -32,7 +34,7 @@ export default function BuilderSelections() {
           src={pageBuilder}
           alt="Page Builder"
         />
-        <h5>Page Builder</h5>
+        <h6>Page Builder</h6>
       </div>
     </div>
   );
