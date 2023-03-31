@@ -2,7 +2,12 @@ import style from "./builderMenu.module.scss";
 import BuilderSelections from "./BuilderSelections/builderSelections";
 import MetaOptions from "./MetaOptions/metaOptions";
 
-export default function BuilderMenu({ siteTitle, onSiteTitleChange }) {
+export default function BuilderMenu({
+  siteTitle,
+  onSiteTitleChange,
+  siteDescription,
+  onSiteDescriptionChange,
+}) {
   return (
     <div className={style.container}>
       <BuilderSelections />
@@ -15,6 +20,8 @@ export default function BuilderMenu({ siteTitle, onSiteTitleChange }) {
         <MetaOptions
           siteTitle={siteTitle}
           onSiteTitleChange={onSiteTitleChange}
+          siteDescription={siteDescription}
+          onSiteDescriptionChange={onSiteDescriptionChange}
         />
       </div>
     </div>
