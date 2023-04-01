@@ -11,15 +11,14 @@ export default function Home() {
     "Web Page Builder Demo by Efe Tacirlioglu."
   );
   const [headerSettings, setHeaderSettings] = useState({
-    headerType: "header1",
     headerBackground: "#ffffff",
-    headerTextColor: "black",
-    headerLogo: "logo",
-    headerLogoColor: "black",
+    headerPrimaryTextColor: "#000000",
+    headerFontSize: "16px",
     headerLayout: 1 / 2,
     headerMenu: [],
     headerHeight: "100px",
     headerWidth: "100%",
+    headerAlign: "center",
   });
 
   useEffect(() => {

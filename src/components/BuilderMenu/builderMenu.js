@@ -25,10 +25,10 @@ export default function BuilderMenu({
           // return button
           <div className="">
             <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold xl:text-base text-xs py-2 px-3 rounded"
+              className="bg-gray-600 hover:bg-gray-800 transition duration-500 text-white font-bold  text-base px-6 py-2 rounded"
               onClick={() => setHeaderBuilderEnabled(false)}
             >
-              ← Return
+              Return
             </button>
           </div>
         )}

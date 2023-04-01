@@ -11,6 +11,10 @@ export default function Header({ settings, setHeaderSettings }) {
           backgroundColor: settings.headerBackground,
           width: settings.headerWidth,
           height: settings.headerHeight,
+          color: settings.headerPrimaryTextColor,
+          fontSize: settings.headerFontSize,
+          display: "flex",
+          justifyContent: settings.headerAlign,
         }}
       >
         Header
