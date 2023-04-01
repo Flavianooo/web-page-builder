@@ -1,11 +1,13 @@
 import style from "./header.module.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import header from "/public/svgs/builder-menu/header.svg";
+import useIsomorphicLayoutEffect from "use-isomorphic-layout-effect";
+import isWindowLoaded from "@/utils/isWindowLoaded";
 
 export default function Header({ settings, setHeaderSettings }) {
   return (
-    <header className={style.header}>
+    <header className="header draggableContainer">
       <div
         style={{
           backgroundColor: settings.headerBackground,
@@ -17,7 +19,11 @@ export default function Header({ settings, setHeaderSettings }) {
           justifyContent: settings.headerAlign,
         }}
       >
-        Header
+        <div className="page-header--isDropzone" data-dropzone="1">
+          <h3 className="draggable-text--isDraggable" data-dropzone="1">
+            test
+          </h3>
+        </div>
       </div>
     </header>
   );

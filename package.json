@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@shopify/draggable": "1.0.0-beta.8",
+    "@wuweiweiwu/react-shopify-draggable": "^0.0.5",
     "autoprefixer": "^10.4.14",
     "clsx": "^1.2.1",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
+    "jquery": "^3.6.4",
     "next": "13.2.4",
     "next-auth": "^4.20.1",
     "node-jose-tools": "^2.0.2",
@@ -20,7 +23,9 @@
     "react": "18.2.0",
     "react-colorful": "^5.6.1",
     "react-dom": "18.2.0",
+    "react-shopify-draggable": "^0.1.5",
     "sass": "^1.60.0",
-    "tailwindcss": "^3.3.1"
+    "tailwindcss": "^3.3.1",
+    "use-isomorphic-layout-effect": "^1.1.2"
   }
 }

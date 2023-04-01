@@ -2,8 +2,9 @@ import Head from "next/head";
 import style from "@/styles/Home.module.css";
 import Layout from "@/components/Layout/layout";
 import BuilderMenu from "@/components/BuilderMenu/builderMenu";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "@/components/Header/header";
+import DragAndDropSection from "@/components/DragAndDropSection/dragAndDropSection";
 
 export default function Home() {
   const [siteTitle, setSiteTitle] = useState("Web Page Builder Demo");
@@ -56,18 +57,36 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <BuilderMenu
-        siteTitle={siteTitle}
-        onSiteTitleChange={onSiteTitleChange}
-        siteDescription={siteDescription}
-        onSiteDescriptionChange={onSiteDescriptionChange}
-        className={style.builderMenu}
-        headerBuilderEnabled={headerBuilderEnabled}
-        setHeaderBuilderEnabled={setHeaderBuilderEnabled}
-        headerData={headerSettings}
-        setHeaderData={setHeaderSettings}
-      />
-      <Header className={style.header} settings={headerSettings}></Header>
+      <ErrorBoundary fallback={<p>Loading...</p>}>
+        <DragAndDropSection
+          siteTitle={siteTitle}
+          onSiteTitleChange={onSiteTitleChange}
+          siteDescription={siteDescription}
+          onSiteDescriptionChange={onSiteDescriptionChange}
+          className={style.builderMenu}
+          headerBuilderEnabled={headerBuilderEnabled}
+          setHeaderBuilderEnabled={setHeaderBuilderEnabled}
+          headerData={headerSettings}
+          setHeaderData={setHeaderSettings}
+        ></DragAndDropSection>
+      </ErrorBoundary>
     </Layout>
   );
+}
+
+class ErrorBoundary extends React.Component {
+  state = { hasError: false, error: null };
+  static getDerivedStateFromError(error) {
+    return {
+      hasError: true,
+      error,
+    };
+  }
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+
+    return this.props.children;
+  }
 }

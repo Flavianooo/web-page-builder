@@ -48,7 +48,6 @@ export default function MetaOptions({
       />
       <Modal modalId={"seo-modal"}>
         <Form submitChanges={submitChanges} title={"Meta Settings for SEO"}>
-          <ModalDisableButton />
           <FormInput
             label={"Site Title"}
             type="text"

@@ -11,10 +11,47 @@ import { useState } from "react";
 import TabSelection from "@/components/Tabs/TabSelection/tabSelection";
 
 export default function HeaderBuilder({ headerData, setHeaderData }) {
+  // useEffect(() => {
+  //   const { Droppable } = require("@shopify/draggable");
+
+  //   let containers = document.querySelectorAll(".draggableContainer");
+
+  //   const textElement = new Droppable(containers, {
+  //     draggable: ".draggable-text--isDraggable",
+  //     dropzone: ".page-header--isDropzone",
+  //     mirror: {
+  //       constrainDimensions: true,
+  //     },
+  //   });
+
+  //   let droppableOrigin;
+
+  //   // --- Draggable events --- //
+  //   textElement.on("drag:start", (evt) => {
+  //     droppableOrigin = evt.originalSource.parentNode.dataset.dropzone;
+  //     const { dragEvent } = evt;
+  //     const { mirror, source } = dragEvent;
+  //     mirror.classList.add("defaultMirror");
+
+  //     // Add drag class to the source element.
+  //     source.classList.add("dragging-element");
+  //   });
+
+  //   textElement.on("droppable:dropped", (evt) => {
+  //     if (droppableOrigin !== evt.dropzone.dataset.dropzone) {
+  //       evt.cancel();
+  //     }
+  //   });
+
+  //   textElement.on("droppable:stop", (evt) => {
+  //     console.log(evt);
+  //   });
+  // }, []);
+
   const openPopup = (e) => {
     hideAllPopups();
     const id = e.target.id;
-    if (id === "header") {
+    if (id === "header-settings") {
       document.getElementById("header-background")?.classList.toggle("hidden");
     }
   };
@@ -100,13 +137,16 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
   };
 
   return (
-    <div className={style.container}>
+    <div
+      id="header-builder"
+      className={`${style.container} draggableContainer`}
+    >
       <button className="lg:ml-6 btn bg-light lg:px-4 px-2 lg:ps-4 ps-2 pt-1 pb-1 outline">
         Layout
       </button>
       <button
         onClick={openPopup}
-        id="header"
+        id="header-settings"
         className="btn bg-light lg:px-4 px-2 lg:ps-4 ps-2 pt-1 pb-1 outline"
       >
         Styling
@@ -117,9 +157,11 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
       <button className="btn bg-light lg:px-4 px-2 lg:ps-4 ps-2 pt-1 pb-1 outline">
         Image
       </button>
-      <button className="btn bg-light lg:px-4 px-2 lg:ps-4 ps-2 pt-1 pb-1 outline">
-        Text
-      </button>
+      <div className="page-header--isDropzone" data-dropzone="1">
+        <button className="draggable-text--isDraggable btn bg-light lg:px-4 px-2 lg:ps-4 ps-2 pt-1 pb-1 outline">
+          Text
+        </button>
+      </div>
       <Modal modalId={"header-background"}>
         <Tabs>
           <TabSelection
@@ -132,7 +174,6 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
           />
           <Tab activeTab={activeTab} id="header-design">
             <Form>
-              <ModalDisableButton />
               <FormInput
                 label={"Header Background Color"}
                 type={"text"}
@@ -176,7 +217,6 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
           </Tab>
           <Tab activeTab={activeTab} id="typography">
             <Form>
-              <ModalDisableButton />
               <FormInput
                 label={"Header Primary Text Color"}
                 type={"text"}

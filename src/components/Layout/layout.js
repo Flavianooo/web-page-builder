@@ -1,9 +1,8 @@
 import style from "./layout.module.scss";
+import React from "react";
 
-export default function Layout({ children }) {
-  return (
-    <div className={style.container}>
-      <main>{children}</main>
-    </div>
-  );
+export default class Layout extends React.Component {
+  render() {
+    return <div>{this.props.children}</div>;
+  }
 }

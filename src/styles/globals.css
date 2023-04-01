@@ -28,3 +28,19 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+.draggable- .draggable-dropzone--active {
+  border-inline: 1px dashed green;
+}
+
+.draggable-dropzone--occupied {
+  border-inline: 1px dashed blue;
+}
+
+.draggable--isDragging {
+  opacity: 0.5;
+}
+
+.dragging-element {
+  opacity: 0.5;
+}
