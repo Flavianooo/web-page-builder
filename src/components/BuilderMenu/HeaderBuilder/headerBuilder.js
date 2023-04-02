@@ -63,7 +63,7 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
       element.style.position = "absolute";
       element.style.top = evt.sensorEvent.data.clientY + "px";
       element.style.left = evt.sensorEvent.data.clientX + "px";
-      element.style.transform = "translate(-50%, -50%)";
+      //element.style.transform = "translate(-50%, -50%)";
     };
 
     const deleteCopies = () => {
