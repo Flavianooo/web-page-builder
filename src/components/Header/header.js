@@ -19,10 +19,8 @@ export default function Header({ settings, setHeaderSettings }) {
           justifyContent: settings.headerAlign,
         }}
       >
-        <div className="page-header--isDropzone" data-dropzone="1">
-          <h3 className="draggable-text--isDraggable" data-dropzone="1">
-            test
-          </h3>
+        <div className="page-header--isDropzone " data-dropzone="1">
+          <h3 className="draggable-text--isDraggable">test</h3>
         </div>
       </div>
     </header>

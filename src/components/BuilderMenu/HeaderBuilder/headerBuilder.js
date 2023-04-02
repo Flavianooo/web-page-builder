@@ -7,46 +7,56 @@ import hideAllPopups from "@/utils/hidePopups";
 import ModalDisableButton from "@/components/Modal/ModalDisableButton/modalDisableButton";
 import Tabs from "@/components/Tabs/tabs";
 import Tab from "@/components/Tabs/Tab/tab";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TabSelection from "@/components/Tabs/TabSelection/tabSelection";
 
 export default function HeaderBuilder({ headerData, setHeaderData }) {
-  // useEffect(() => {
-  //   const { Droppable } = require("@shopify/draggable");
+  useEffect(() => {
+    const { Droppable } = require("@shopify/draggable");
 
-  //   let containers = document.querySelectorAll(".draggableContainer");
+    let containers = document.querySelectorAll(".draggableContainer");
 
-  //   const textElement = new Droppable(containers, {
-  //     draggable: ".draggable-text--isDraggable",
-  //     dropzone: ".page-header--isDropzone",
-  //     mirror: {
-  //       constrainDimensions: true,
-  //     },
-  //   });
+    const textElement = new Droppable(containers, {
+      draggable: ".draggable-text--isDraggable",
+      dropzone: ".page-header--isDropzone",
+      mirror: {
+        constrainDimensions: true,
+      },
+    });
 
-  //   let droppableOrigin;
+    let droppableOrigin;
 
-  //   // --- Draggable events --- //
-  //   textElement.on("drag:start", (evt) => {
-  //     droppableOrigin = evt.originalSource.parentNode.dataset.dropzone;
-  //     const { dragEvent } = evt;
-  //     const { mirror, source } = dragEvent;
-  //     mirror.classList.add("defaultMirror");
+    // --- Draggable events --- //
+    textElement.on("drag:start", (evt) => {
+      droppableOrigin = evt.originalSource.parentNode.dataset.dropzone;
+      // const { dragEvent } = evt;
+      // const { mirror, source } = dragEvent;
+      // mirror.classList.add("defaultMirror");
 
-  //     // Add drag class to the source element.
-  //     source.classList.add("dragging-element");
-  //   });
+      // // Add drag class to the source element.
+      // source.classList.add("dragging-element");
+    });
 
-  //   textElement.on("droppable:dropped", (evt) => {
-  //     if (droppableOrigin !== evt.dropzone.dataset.dropzone) {
-  //       evt.cancel();
-  //     }
-  //   });
+    textElement.on("droppable:dropped", (evt) => {
+      if (droppableOrigin !== evt.dropzone.dataset.dropzone) {
+        evt.cancel();
+      }
+    });
 
-  //   textElement.on("droppable:stop", (evt) => {
-  //     console.log(evt);
-  //   });
-  // }, []);
+    textElement.on("drag:move", (evt) => {
+      let element = document.getElementsByClassName("draggable-mirror")[0];
+      element.style.position = "absolute";
+      element.style.top = evt.sensorEvent.data.clientY + "px";
+      element.style.left = evt.sensorEvent.data.clientX + "px";
+      element.style.transform = "translate(-50%, -50%)";
+      console.log(evt);
+    });
+
+    textElement.on("droppable:stop", (evt) => {
+      console.log(evt);
+      document.querySelector(".draggable-mirror").remove();
+    });
+  }, []);
 
   const openPopup = (e) => {
     hideAllPopups();
@@ -157,7 +167,7 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
       <button className="btn bg-light lg:px-4 px-2 lg:ps-4 ps-2 pt-1 pb-1 outline">
         Image
       </button>
-      <div className="page-header--isDropzone" data-dropzone="1">
+      <div className="" data-dropzone="1">
         <button className="draggable-text--isDraggable btn bg-light lg:px-4 px-2 lg:ps-4 ps-2 pt-1 pb-1 outline">
           Text
         </button>

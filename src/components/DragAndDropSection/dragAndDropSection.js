@@ -16,7 +16,7 @@ export default function DragAndDropSection({
   setHeaderData,
 }) {
   return (
-    <div container={style.container}>
+    <div className="page-header--isDropzone" container={style.container}>
       <BuilderMenu
         siteTitle={siteTitle}
         onSiteTitleChange={onSiteTitleChange}

@@ -29,7 +29,7 @@ a {
   text-decoration: none;
 }
 
-.draggable- .draggable-dropzone--active {
+.draggable-dropzone--active {
   border-inline: 1px dashed green;
 }
 
@@ -37,10 +37,14 @@ a {
   border-inline: 1px dashed blue;
 }
 
-.draggable--isDragging {
-  opacity: 0.5;
+.draggable-dropzone--occupied.draggable-dropzone--active {
+  border-inline: 1px dashed red;
 }
 
-.dragging-element {
-  opacity: 0.5;
+.draggable-mirror {
+  opacity: 0.5 !important;
+}
+
+.dropzone--over {
+  color: blue;
 }
