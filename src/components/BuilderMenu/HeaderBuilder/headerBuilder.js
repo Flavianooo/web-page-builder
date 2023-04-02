@@ -29,12 +29,8 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
     // --- Draggable events --- //
     textElement.on("drag:start", (evt) => {
       droppableOrigin = evt.originalSource.parentNode.dataset.dropzone;
-      // const { dragEvent } = evt;
-      // const { mirror, source } = dragEvent;
-      // mirror.classList.add("defaultMirror");
-
-      // // Add drag class to the source element.
-      // source.classList.add("dragging-element");
+      const { dragEvent } = evt;
+      console.log(evt);
     });
 
     textElement.on("droppable:dropped", (evt) => {
@@ -44,18 +40,39 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
     });
 
     textElement.on("drag:move", (evt) => {
+      followCursor(evt);
+    });
+
+    textElement.on("droppable:stop", (evt) => {
+      document.querySelector(".draggable-mirror").remove();
+
+      let element = document.querySelector(
+        ".draggable-dropzone--occupied.draggable-dropzone--active"
+      );
+      if (!element) {
+        deleteCopies();
+        return;
+      }
+      element.classList.remove("draggable-dropzone--occupied");
+      element.append(evt.data.dragEvent.data.originalSource.innerHTML);
+      deleteCopies();
+    });
+
+    const followCursor = (evt) => {
       let element = document.getElementsByClassName("draggable-mirror")[0];
       element.style.position = "absolute";
       element.style.top = evt.sensorEvent.data.clientY + "px";
       element.style.left = evt.sensorEvent.data.clientX + "px";
       element.style.transform = "translate(-50%, -50%)";
-      console.log(evt);
-    });
+    };
 
-    textElement.on("droppable:stop", (evt) => {
-      console.log(evt);
-      document.querySelector(".draggable-mirror").remove();
-    });
+    const deleteCopies = () => {
+      let copies = document.querySelectorAll(".draggable-source--is-dragging");
+      for (let i = 0; i < copies.length; i++) {
+        copies[i].style.display = "none";
+      }
+      document.querySelector(".draggable--original").style.display = "none";
+    };
   }, []);
 
   const openPopup = (e) => {
@@ -119,7 +136,7 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
   const setHeaderAlignLeft = () => {
     setHeaderData({
       ...headerData,
-      headerAlign: "left",
+      headerAlign: "flex-start",
     });
     saveHeaderSettings("headerAlign", "flex-start");
   };
@@ -135,9 +152,33 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
   const setHeaderAlignRight = () => {
     setHeaderData({
       ...headerData,
-      headerAlign: "right",
+      headerAlign: "flex-end",
     });
     saveHeaderSettings("headerAlign", "flex-end");
+  };
+
+  const setHeaderVerticalAlignTop = () => {
+    setHeaderData({
+      ...headerData,
+      headerVerticalAlign: "flex-start",
+    });
+    saveHeaderSettings("headerVerticalAlign", "flex-start");
+  };
+
+  const setHeaderVerticalAlignCenter = () => {
+    setHeaderData({
+      ...headerData,
+      headerVerticalAlign: "center",
+    });
+    saveHeaderSettings("headerVerticalAlign", "center");
+  };
+
+  const setHeaderVerticalAlignBottom = () => {
+    setHeaderData({
+      ...headerData,
+      headerVerticalAlign: "flex-end",
+    });
+    saveHeaderSettings("headerVerticalAlign", "flex-end");
   };
 
   const [activeTab, setActiveTab] = useState("header-design");
@@ -167,7 +208,7 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
       <button className="btn bg-light lg:px-4 px-2 lg:ps-4 ps-2 pt-1 pb-1 outline">
         Image
       </button>
-      <div className="" data-dropzone="1">
+      <div data-dropzone="1">
         <button className="draggable-text--isDraggable btn bg-light lg:px-4 px-2 lg:ps-4 ps-2 pt-1 pb-1 outline">
           Text
         </button>
@@ -212,6 +253,7 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
                 value={headerData.headerHeight?.slice(0, -2)}
                 onChange={setHeaderHeight}
               ></FormInput>
+              <h5>Horizontal Align</h5>
               <div className={style.splitButtons}>
                 <button type="button" onClick={setHeaderAlignLeft}>
                   Align Left
@@ -221,6 +263,19 @@ export default function HeaderBuilder({ headerData, setHeaderData }) {
                 </button>
                 <button type="button" onClick={setHeaderAlignRight}>
                   Align Right
+                </button>
+              </div>
+              <br />
+              <h5>Vertical Align</h5>
+              <div className={style.splitButtons}>
+                <button type="button" onClick={setHeaderVerticalAlignTop}>
+                  Align Top
+                </button>
+                <button type="button" onClick={setHeaderVerticalAlignCenter}>
+                  Align Center
+                </button>
+                <button type="button" onClick={setHeaderVerticalAlignBottom}>
+                  Align Bottom
                 </button>
               </div>
             </Form>

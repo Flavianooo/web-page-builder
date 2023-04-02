@@ -20,6 +20,7 @@ export default function Home() {
     headerHeight: "100px",
     headerWidth: "100%",
     headerAlign: "center",
+    headerVerticalAlign: "center",
   });
 
   useEffect(() => {

@@ -17,11 +17,13 @@ export default function Header({ settings, setHeaderSettings }) {
           fontSize: settings.headerFontSize,
           display: "flex",
           justifyContent: settings.headerAlign,
+          alignItems: settings.headerVerticalAlign,
         }}
       >
-        <div className="page-header--isDropzone " data-dropzone="1">
-          <h3 className="draggable-text--isDraggable">test</h3>
-        </div>
+        <div
+          className={`page-header--isDropzone ${style.elementBlock1_2}`}
+          data-dropzone="1"
+        ></div>
       </div>
     </header>
   );
